@@ -11,7 +11,7 @@ That being said, the basic process of creating branches, committing code to them
 git clone https://github.com/trevornag/RestaurantOrderingSystem.git
 ```
 * After each sprint has been planned and you have been assigned issues, it is time to create a new branch to start your work on
-    * Issues in GitHub all have numbers associated to them. Take the name of the issue and create the name the branch based off it with the issue number appended to it. For example, say we have "#1 Good first issue" as the title of an issue, an ideal name for your new branch would be `good-first-issue-1`
+    * Issues in GitHub all have numbers associated to them. (I am using the ZenHub extension)  Take the name of the issue and create the name the branch based off it with the issue number appended to it. For example, say we have "#1 Good first issue" as the title of an issue, an ideal name for your new branch would be `good-first-issue-1`
     * Make sure to keep the entire thing lowercase with dashes between words/numbers and the issue number appended at the end
     * Before entering the command, make sure before you do a `git pull` and a `git branch` to ensure that you see the `*` next to the `master` branch name. Avoid branching off a feature branch at all cost, it could end up being a mess and having conflicts later down the line 
     * Create the new branch using `git branch good-first-issue-1`, i.e `git branch <new-branch-name>`
