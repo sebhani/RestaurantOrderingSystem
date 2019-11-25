@@ -1,0 +1,21 @@
+*{
+		box-sizing: border-box;
+}
+h1, h2{
+		font-family: 'Amatic SC', cursive;
+}
+nav {
+		position: sticky;
+		top:0;
+}
+nav ul{
+		list-style-type: none;
+		font-family: 'Josefin Slab', serif;
+		display: flex;
+		flex-direction: row;
+}
+nav li{
+		margin: 10px;
+}
+
+
