@@ -1,0 +1,38 @@
+*{
+		box-sizing: border-box;
+}
+html, body{
+		width: 100%;
+}
+h1, h2{
+		font-family: 'Amatic SC', cursive;
+}
+#header{
+		text-align: center;
+}
+nav {
+		position: sticky;
+		top:0;
+		background-color: grey;
+}
+nav ul{
+		list-style-type: none;
+		font-family: 'Josefin Slab', serif;
+		display: flex;
+		flex-direction: row;
+}
+nav li{
+		margin: 10px;
+}
+nav a{
+		color: white;
+}
+#menu {
+		margin: auto;
+		width: 100%;
+}
+#menu table{
+		margin: 0 auto;
+		width: 40%;
+		text-align: center;
+}
