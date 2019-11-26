@@ -22,11 +22,12 @@
 							<li><a href="#">Address</a></li>
 							<li><a href="#">Contact</a></li>
 							<li><a href="#">Log In</a></li>
-							<li><a href="#">Cart</a></li>
+							<li style="margin-left: auto;"><a href="#">Cart</a></li>
 					</ul>
 				</nav>
 				<div id="menu">
-						<table>
+						<h3>Sort Items</h3>
+						<table> <%-- replace by loop to fetch all inventory items --%>
 								<tr>
 										<th>Item</th>
 										<th>Price (CAD)</th>
@@ -35,6 +36,10 @@
 								</tr>
 										<td>Lorem Ipsum</td>
 										<td>$$.$$</td>
+										<td> <form>
+														<button>+</button>
+														<button>-</button>
+												</form>
 								</tr>
 								<tr>
 										<td>Lorem Ipsum2</td>
