@@ -29,7 +29,7 @@ public class ItemRepository{
 
 	
 	
-	public Item findOne(long id) {
+	public Item findOne(int id) {
 		
 		return jdbc.queryForObject(SQL_FIND_ONE, new CustomerRowMapper(), id);
 	}
@@ -60,13 +60,10 @@ public class ItemRepository{
 		}
 		
 		return null;
-		
 	}
 
 	
 	public List<Item> findAll() {
-		//RowMapper<Item> rowMapper = new BeanPropertyRowMapper<Item>(Item.class);
-		//return jdbcTemplate.query(SQL_FIND_ALL, rowMapper);
 		return jdbc.query(SQL_FIND_ALL, new CustomerRowMapper());
 	}
 
@@ -76,8 +73,8 @@ public class ItemRepository{
 	}
 
 	
-	public int delete(Item cust) {
-		return jdbc.update(SQL_DELETE_ONE, cust.getId());
+	public int delete(int i) {
+		return jdbc.update(SQL_DELETE_ONE, i);
 	}
 
 	private class CustomerRowMapper implements RowMapper<Item> {
