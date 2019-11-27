@@ -5,9 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -15,20 +16,21 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ItemPersistency{
-
+public class ItemRepository{
+	//Autowired annotation makes the class a kind of singleton
 	@Autowired
 	private JdbcOperations jdbc;
 	
-	private static final String SQL_INSERT = "insert into MenuItem (name, description, price, availability) values (?, ?, ?, ?)";
-	private static final String SQL_UPDATE = "update MenuItem set name=?, description=?, price=?, availability=? where id=?";
-	private static final String SQL_FIND_ONE = "select * from MenuItem where id = ?";
-	private static final String SQL_FIND_ALL = "select * from MenuItem order by name";
-	private static final String SQL_DELETE_ONE = "delete from MenuItem where id = ?";
+	private static final String SQL_INSERT = "insert restaurantorderingsystem_db.item (name, description, price, availability) values (?, ?, ?, ?)";
+	private static final String SQL_UPDATE = "update restaurantorderingsystem_db.item set name=?, description=?, price=?, availability=? where id=?";
+	private static final String SQL_FIND_ONE = "select * from restaurantorderingsystem_db.item where id = ?";
+	private static final String SQL_FIND_ALL = "select * from restaurantorderingsystem_db.item order by name";
+	private static final String SQL_DELETE_ONE = "delete from restaurantorderingsystem_db.item where id = ?";
 
 	
 	
 	public Item findOne(long id) {
+		
 		return jdbc.queryForObject(SQL_FIND_ONE, new CustomerRowMapper(), id);
 	}
 
@@ -63,6 +65,8 @@ public class ItemPersistency{
 
 	
 	public List<Item> findAll() {
+		//RowMapper<Item> rowMapper = new BeanPropertyRowMapper<Item>(Item.class);
+		//return jdbcTemplate.query(SQL_FIND_ALL, rowMapper);
 		return jdbc.query(SQL_FIND_ALL, new CustomerRowMapper());
 	}
 
