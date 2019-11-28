@@ -1,0 +1,51 @@
+<html>
+	<header>
+		<link rel="stylesheet" type="text/css" href="../CSS/homepage.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/cartPage.css">
+		<script src="../JS/cartPageJs.js"></script>
+
+		<style type="text/css">
+			@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Slab&display=swap');
+
+		</style>
+	</header>
+	<body>
+		<div id="header">
+			<h1>Restaurant Name</h1>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="/">Menu</a></li>
+				<li><a href="#">Address</a></li>
+				<li><a href="#">Contact</a></li>
+				<li><a href="#">Log In</a></li>
+			</ul>
+		</nav>
+
+		<table id="cartTable" border=1 class="center">
+			<thead>
+				<tr>
+					<th>&nbsp;Dish</th>
+					<th>&nbsp;Price</th>
+					<th>&nbsp;QTY</th>
+					<th>&nbsp;Total</th>
+				</tr>
+			</thead>
+
+			<!--This part should be created dynamically-->
+			<tbody>
+				<script type="text/javascript">
+					UpdateTable(new Array("Falafel",10));
+					UpdateTable(new Array("Rodrigo",0));
+				</script>
+			</tbody>
+		</table>
+
+		<div id="Checkout">
+			<h1> Number of items in cart: <div id="numCart"></div></h1>
+			<h1 style="margin-top: 20px;">Total: <div id="totalPrice"></div></h1>
+			<button class="button button4" style="margin-top: 15px; display:block">Checkout</button>
+		</div>
+
+	</body>
+</html>

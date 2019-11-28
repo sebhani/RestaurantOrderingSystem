@@ -2,6 +2,7 @@ package api.Inventory;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.DecimalMin;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class InventoryController {
 	
 	@Autowired
     ItemRepository itemRespository;
+	@RequestMapping(value = "/")
+	public void redirectHomePage(HttpServletResponse httpResponse) throws Exception {
+	        httpResponse.sendRedirect("/html/homepage.html");  
+	}
 	@RequestMapping(value = "/inventory", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Item> getCompleteInventory() {
 		return itemRespository.findAll();
