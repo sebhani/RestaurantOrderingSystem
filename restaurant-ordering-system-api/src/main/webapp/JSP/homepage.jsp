@@ -48,8 +48,18 @@
 							 for (var i = 0; i<e.length; i++){
 									if (e[i].available){
 											itemName = e[i].name;
+							   				var button= document.createElement("button");
+							   				button.type="button";
+							   				button.onClick= function(){
+							   					if (localStorage.name){
+							   						localStorage.name.append(itemName);
+							   					}else{
+							   						localStorage.name=itemName;
+							   					}
+							   				}
 											var cellName= document.createElement("td");
 											var cellNameText= document.createTextNode(itemName)
+							   				cellName.appendChild(button);
 					 						cellName.appendChild(cellNameText);
 											itemPrice = e[i].price;
 											var cellPrice= document.createElement("td");
