@@ -51,11 +51,10 @@
 							   				var button= document.createElement("button");
 							   				button.type="button";
 							   				button.onClick= function(){
-							   					if (localStorage.name){
-							   						localStorage.name.append(itemName);
-							   					}else{
-							   						localStorage.name=itemName;
-							   					}
+							   					if (!localStorage.name[i]){
+							   						localStorage.name= itemName;
+							   						localStorage.price= itemPrice;
+							   					{
 							   				}
 											var cellName= document.createElement("td");
 											var cellNameText= document.createTextNode(itemName)
