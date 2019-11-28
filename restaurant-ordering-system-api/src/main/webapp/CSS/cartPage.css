@@ -1,15 +1,17 @@
+
 *{box-sizing: border-box;}
-table {
+
+table#cartTable {
   border-collapse:separate;
   border:solid black 1px;
   border-radius:6px;
-  width: 60%;
+  width: 45%;
   bottom: 1;
-
+  margin-left: 25px;
+  margin-top: 20px; 
+  float: left;
   }
 table.center {
-  margin-left:auto; 
-  margin-right:auto;
   }
 td, th {
   width: 130px;
@@ -22,6 +24,13 @@ th {
   text-transform: uppercase;
    background-color: #f34d35;
   border-top: none;
+}
+
+
+#Checkout{
+  float: left;
+  margin-top: 18px;
+  margin-left: 20%;
 }
 
 
@@ -86,3 +95,30 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button4 {
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+  margin: auto;
+  width: 85%;
+}
+
+.button4:hover {background-color: #e7e7e7;}
