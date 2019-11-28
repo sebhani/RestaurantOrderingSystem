@@ -1,3 +1,34 @@
+var idsInStorage = [];
+var itemObjects = [];
+var xhr = new XMLHttpRequest();
+for(var key in window.localStorage){
+	if(parseInt(key) != NaN && parseInt(key) > 0 && /^\d+$/.test(key)){
+		idsInStorage.push(key);
+	}
+}
+	
+	 xhr.open('GET', `http://localhost:8080/inventory/`, true);
+	 xhr.send();
+	 xhr.onload = processRequest;
+					 
+function processRequest (e){
+	if (xhr.readyState == 4){
+		var response = JSON.parse(xhr.responseText);
+		filterItems(response);
+		console.log(itemObjects)
+}}
+
+function filterItems(e){
+	for (var i= 0; i<e.length; i++){
+		if(idsInStorage.includes(e[i])){
+			itemObjects.push(e[i])
+		}
+	}
+}
+ 
+
+ 
+
 //hanlde updating quantity
 function increaseValue(elementID) {
   var value = parseInt(document.getElementById(elementID).value, 10);
@@ -35,4 +66,4 @@ function UpdateTable(rowInfo){
 "</form>"
 	cell4.innerHTML = "Temp";
 
-	}
+}
