@@ -74,7 +74,7 @@ form #input-wrap {
   padding: 0px;
 }
 
-input#number {
+input.number {
   text-align: center;
   border: none;
   border-top: 1px solid #ddd;
