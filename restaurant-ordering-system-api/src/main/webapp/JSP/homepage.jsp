@@ -35,13 +35,11 @@
 					 var xhr = new XMLHttpRequest();
 					 xhr.open('GET', "http://localhost:8080/inventory", true);
 					 xhr.send();
-					 xhr.onreadystatechange = processRequest;
-					 xhr.addEventListener("readystatechange", processRequest, false);
+					 xhr.onload = processRequest;
 					 
 					 function processRequest (e){
 					 	if (xhr.readyState == 4){
 					 		var response = JSON.parse(xhr.responseText);
-					 		console.log(response[0].name)
 							drawMenu(response);
 					 	}
 					 }
