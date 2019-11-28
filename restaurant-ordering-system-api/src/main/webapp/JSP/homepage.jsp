@@ -25,26 +25,44 @@
 							<li style="margin-left: auto;"><a href="#">Cart</a></li>
 					</ul>
 				</nav>
-				<div id="menu">
-						<h3>Sort Items</h3>
-						<table> <%-- replace by loop to fetch all inventory items --%>
+				<div>
+						<table id="menu"> <%-- replace by loop to fetch all inventory items --%>
 								<tr>
 										<th>Item</th>
 										<th>Price (CAD)</th>
-										<th>Qtity</th>
 								</tr>
-								</tr>
-										<td>Lorem Ipsum</td>
-										<td>$$.$$</td>
-										<td> <form>
-														<button>+</button>
-														<button>-</button>
-												</form>
-								</tr>
-								<tr>
-										<td>Lorem Ipsum2</td>
-										<td>$$.$$</td>
-								</tr>
+		<script>
+					 var xhr = new XMLHttpRequest();
+					 xhr.open('GET', "http://localhost:8080/inventory", true);
+					 xhr.send();
+					 xhr.onload = processRequest;
+					 
+					 function processRequest (e){
+					 	if (xhr.readyState == 4){
+					 		var response = JSON.parse(xhr.responseText);
+							drawMenu(response);
+					 	}
+					 }
+					 function drawMenu(e){
+					 	var menu = document.getElementById('menu');
+							 for (var i = 0; i<e.length; i++){
+									if (e[i].available){
+											itemName = e[i].name;
+											var cellName= document.createElement("td");
+											var cellNameText= document.createTextNode(itemName)
+					 						cellName.appendChild(cellNameText);
+											itemPrice = e[i].price;
+											var cellPrice= document.createElement("td");
+					 						var cellPriceText= document.createTextNode(itemPrice);
+					 						cellPrice.appendChild(cellPriceText);
+					 						var row= document.createElement("tr");
+					 						row.appendChild(cellName);
+					 						row.appendChild(cellPrice);
+							   				menu.appendChild(row);
+									}
+					 		 }
+					 }
+		</script>
 						</table>
 				</div>
 		</body>
