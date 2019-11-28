@@ -1,26 +1,29 @@
 <html>
 	<header>
-						<link rel="stylesheet" type="text/css" href="../CSS/homepage.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/homepage.css">
 		<style type="text/css">
-									@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Slab&display=swap');
+			@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Slab&display=swap');
 
 			table {
-				  display: block;
-  margin-left: auto;
-  margin-right: auto;
 				border-collapse:separate;
 			    border:solid black 1px;
 			    border-radius:6px;
-				width: 50%;
+				width: 60%;
 				bottom: 1;
 
 			}
+			table.center {
+			    margin-left:auto; 
+			    margin-right:auto;
+			}
 			td, th {
+				padding: 8px;
 				border-left:solid black 1px;
     			border-top:solid black 1px;
 			}
 
 			th {
+				text-transform: uppercase;
 			    background-color: #f34d35;
 			    border-top: none;
 			}
@@ -28,18 +31,19 @@
 		</style>
 	</header>
 	<body>
-						<div id="header">
-						<h1>Restaurant Name</h1>
-				</div>
-						<nav>
-					<ul>
-							<li><a href=#>Menu</a></li>
-							<li><a href="#">Address</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">Log In</a></li>
-					</ul>
-				</nav>
-		<table border=1>
+		<div id="header">
+			<h1>Restaurant Name</h1>
+		</div>
+		<nav>
+			<ul>
+				<li><a href=#>Menu</a></li>
+				<li><a href="#">Address</a></li>
+				<li><a href="#">Contact</a></li>
+				<li><a href="#">Log In</a></li>
+			</ul>
+		</nav>
+
+		<table border=1 class="center">
 			<thead>
 				<tr>
 					<th>&nbsp;Product</th>
@@ -49,16 +53,24 @@
 				</tr>
 			</thead>
 
+			<!--This part should be created dynamically-->
 			<tbody>
-			<!--This part should be create dynamically-->
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<!--QTY cell-->
+					<td>&nbsp;
+						<form>
+						  <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+						  <input type="number" id="number" value="0" />
+						  <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+						</form>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
+
 
 	</body>
 </html>
