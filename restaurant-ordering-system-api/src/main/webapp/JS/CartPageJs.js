@@ -1,8 +1,6 @@
 //hanlde updating quantity
 function increaseValue(elementID) {
-	console.log(document.getElementById(elementID));
   var value = parseInt(document.getElementById(elementID).value, 10);
-  console.log(elementID);
   value = isNaN(value) ? 0 : value;
   value++;
   document.getElementById(elementID).value = value;
@@ -35,7 +33,6 @@ function UpdateTable(rowInfo){
 `<input type='number' class="number" id='row${lastRowIndex+1}' value='1' />`+
 `<div class='value-button' id='increase' onclick='increaseValue("row${lastRowIndex+1}")' value='Increase Value'>+</div>`+
 "</form>"
-	console.log(cell3.innerHTML);
 	cell4.innerHTML = "Temp";
 
 	}
