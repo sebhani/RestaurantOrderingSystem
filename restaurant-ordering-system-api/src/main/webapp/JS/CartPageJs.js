@@ -1,24 +1,79 @@
-//hanlde updating quantity
-function increaseValue(elementID) {
+var idsInStorage = [];
+var itemObjects = [];
+var xhr = new XMLHttpRequest();
+var TOTALPRICE =0;
+for(var key in window.localStorage){
+	if(parseInt(key) != NaN && parseInt(key) > 0 && /^\d+$/.test(key)){
+		idsInStorage.push(parseInt(key));
+	}
+}
+	
+	 xhr.open('GET', `http://localhost:8080/inventory/`, true);
+	 xhr.send();
+	 xhr.onload = processRequest;
+					 
+function processRequest (e){
+	if (xhr.readyState == 4){
+		var response = JSON.parse(xhr.responseText);
+		filterItems(response);
+		console.log(itemObjects)
+}}
+
+function filterItems(e){
+	console.log(e);
+	console.log(idsInStorage);
+	for (var i= 0; i<e.length; i++){
+		if(idsInStorage.includes(e[i].id)){
+			itemObjects.push(e[i])
+		}
+	}
+	document.getElementById("numCart").innerHTML = itemObjects.length;
+	for (var j=0; j<itemObjects.length; j++){
+		UpdateTable(new Array(itemObjects[j].name,itemObjects[j].price));
+		TOTALPRICE+=itemObjects[j].price;
+		document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
+	}
+}
+ 
+
+
+
+//handle updating quantity
+function increaseValue(elementID, price, totalID) {
   var value = parseInt(document.getElementById(elementID).value, 10);
   value = isNaN(value) ? 0 : value;
   value++;
   document.getElementById(elementID).value = value;
+  var total = priceCompute(elementID, price, "increaseValue");
+  document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
+  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";
 }
 
-function decreaseValue(elementID) {
+function decreaseValue(elementID, price, totalID) {
   var value = parseInt(document.getElementById(elementID).value, 10);
   value = isNaN(value) ? 0 : value;
   value < 1 ? value = 1 : '';
   value--;
   document.getElementById(elementID).value = value;
+  var total = priceCompute(elementID, price, "decreaseValue");
+  document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
+  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";
+}
+
+function priceCompute(elementID, price, method){
+	var val = document.getElementById(elementID).value;
+	if(method === "increaseValue" )
+		TOTALPRICE+=parseFloat(price);
+	else
+		TOTALPRICE-=parseFloat(price);
+	return parseFloat(val)*parseFloat(price).toFixed(2);
 }
 
 //update the cart table dynamically
 function UpdateTable(rowInfo){
 	var table = document.getElementById("cartTable");
 	var lastRowIndex = table.rows.length -1;
-	console.log(lastRowIndex);
+	//console.log(lastRowIndex);
 	var row = table.insertRow(lastRowIndex+1);
 
 	var cell1 = row.insertCell(0);
@@ -27,12 +82,12 @@ function UpdateTable(rowInfo){
 	var cell4 = row.insertCell(3);
 
 	cell1.innerHTML = rowInfo[0];
-	cell2.innerHTML = rowInfo[1];
+	cell2.innerHTML = rowInfo[1] +"$";
 	cell3.innerHTML = "<form class='center' >"+
-`<div class='value-button' id='decrease' onclick='decreaseValue("row${lastRowIndex+1}")' value='Decrease Value'>-</div>`+
+`<div class='value-button' id='decrease' onclick='decreaseValue("row${lastRowIndex+1}", ${rowInfo[1]}, "total${lastRowIndex+1}")' value='Decrease Value'>-</div>`+
 `<input type='number' class="number" id='row${lastRowIndex+1}' value='1' />`+
-`<div class='value-button' id='increase' onclick='increaseValue("row${lastRowIndex+1}")' value='Increase Value'>+</div>`+
+`<div class='value-button' id='increase' onclick='increaseValue("row${lastRowIndex+1}", ${rowInfo[1]}, "total${lastRowIndex+1}")' value='Increase Value'>+</div>`+
 "</form>"
-	cell4.innerHTML = "Temp";
+	cell4.innerHTML = `<p class="number" id='total${lastRowIndex+1}'>${rowInfo[1]}$</p>`
 
-	}
+}
