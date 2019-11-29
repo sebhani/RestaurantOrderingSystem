@@ -28,27 +28,28 @@ var xhr = new XMLHttpRequest();
 								data=response;
 								
 								for (var i=0; i<data.length; i++){
-					                console.log(data[i].name);
-					                g = document.createElement('div');
-					                g.setAttribute("class", "card");
-					                document.getElementById("cards").appendChild(g);
+
+					                baseDiv = document.createElement('div');
+					                baseDiv.setAttribute("class", "card");
+					                document.getElementById("cards").appendChild(baseDiv);
 					                var img = document.createElement('img');
 					                img.setAttribute("src", "");
 					                img.setAttribute("alt", data[i].name +" Image");
-					                var h = document.createElement("H1");
-					                var t = document.createTextNode(data[i].name); 
-					                h.appendChild(t);
+					                
+					                var header = document.createElement("H1");
+					                var title = document.createTextNode(data[i].name); 
+					                header.appendChild(title);
 					                
 					                var price = document.createElement("P");
 					                price.setAttribute("class", "price");
 					                var amount = document.createTextNode(data[i].price + "$");
 					                price.appendChild(amount);
 					                
-					                var p = document.createElement("P");
-					                var d = document.createTextNode(data[i].description);
-					                p.appendChild(d);
+					                var pTag = document.createElement("P");
+					                var descriptionText = document.createTextNode(data[i].description);
+					                pTag.appendChild(descriptionText);
 					                
-					                var bb = document.createElement("P")
+					                var pTagButton = document.createElement("P")
 					                var btn = document.createElement("BUTTON");
 					                btn.innerHTML = "Add to Cart";
 					                let id = data[i].id;
@@ -57,14 +58,14 @@ var xhr = new XMLHttpRequest();
 											localStorage.setItem(id,"item with id: "+id);
 										}
 				   					};
-					                bb.appendChild(btn);
+				   					pTagButton.appendChild(btn);
 					                
 					            
-					                document.getElementById("cards").appendChild(img);
-					               document.getElementById("cards").appendChild(h);
+					               document.getElementById("cards").appendChild(img);
+					               document.getElementById("cards").appendChild(header);
 					               document.getElementById("cards").appendChild(price);
-					               document.getElementById("cards").appendChild(p);
-					               document.getElementById("cards").appendChild(bb);
+					               document.getElementById("cards").appendChild(pTag);
+					               document.getElementById("cards").appendChild(pTagButton);
 					              }
 						 	}
 						 }
