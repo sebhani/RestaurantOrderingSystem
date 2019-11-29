@@ -1,6 +1,7 @@
 var idsInStorage = [];
 var itemObjects = [];
 var xhr = new XMLHttpRequest();
+var TOTALPRICE =0;
 for(var key in window.localStorage){
 	if(parseInt(key) != NaN && parseInt(key) > 0 && /^\d+$/.test(key)){
 		idsInStorage.push(parseInt(key));
@@ -29,6 +30,8 @@ function filterItems(e){
 	document.getElementById("numCart").innerHTML = itemObjects.length;
 	for (var j=0; j<itemObjects.length; j++){
 		UpdateTable(new Array(itemObjects[j].name,itemObjects[j].price));
+		TOTALPRICE+=itemObjects[j].price;
+		document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
 	}
 }
  
@@ -41,8 +44,9 @@ function increaseValue(elementID, price, totalID) {
   value = isNaN(value) ? 0 : value;
   value++;
   document.getElementById(elementID).value = value;
-  var total = priceCompute(elementID, price);
-  document.getElementById(totalID).innerHTML = total +"$";
+  var total = priceCompute(elementID, price, "increaseValue");
+  document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
+  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";
 }
 
 function decreaseValue(elementID, price, totalID) {
@@ -51,13 +55,18 @@ function decreaseValue(elementID, price, totalID) {
   value < 1 ? value = 1 : '';
   value--;
   document.getElementById(elementID).value = value;
-  var total = priceCompute(elementID, price);
-  document.getElementById(totalID).innerHTML = total +"$";
+  var total = priceCompute(elementID, price, "decreaseValue");
+  document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
+  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";
 }
 
-function priceCompute(elementID, price){
+function priceCompute(elementID, price, method){
 	var val = document.getElementById(elementID).value;
-	return parseFloat(val)*parseFloat(price);
+	if(method === "increaseValue" )
+		TOTALPRICE+=parseFloat(price);
+	else
+		TOTALPRICE-=parseFloat(price);
+	return parseFloat(val)*parseFloat(price).toFixed(2);
 }
 
 //update the cart table dynamically
