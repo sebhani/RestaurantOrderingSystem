@@ -1,7 +1,8 @@
 var idsInStorage = [];
 var itemObjects = [];
 var xhr = new XMLHttpRequest();
-var TOTALPRICE =0;
+var TOTALPRICE = 0;
+var QTYInitial = 0;
 for(var key in window.localStorage){
 	if(parseInt(key) != NaN && parseInt(key) > 0 && /^\d+$/.test(key)){
 		idsInStorage.push(parseInt(key));
@@ -35,13 +36,18 @@ function filterItems(e){
 	}
 }
  
-
+function storeIntialQTY(initialQTY){//helper method used to store the initial number of QTY
+	if(initialQTY != (-10))
+		QTYInitial = initialQTY;
+	return QTYInitial;
+}
 
 
 //handle updating quantity
 function increaseValue(elementID, price, totalID) {
   var value = parseInt(document.getElementById(elementID).value, 10);
   value = isNaN(value) ? 0 : value;
+  storeIntialQTY(value);
   value++;
   document.getElementById(elementID).value = value;
   var total = priceCompute(elementID, price, "increaseValue");
@@ -52,19 +58,21 @@ function increaseValue(elementID, price, totalID) {
 function decreaseValue(elementID, price, totalID) {
   var value = parseInt(document.getElementById(elementID).value, 10);
   value = isNaN(value) ? 0 : value;
-  value < 1 ? value = 1 : '';
-  value--;
+  storeIntialQTY(value);
+  if(value != 0)
+ 	 value--;
   document.getElementById(elementID).value = value;
   var total = priceCompute(elementID, price, "decreaseValue");
-  document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
-  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";
+  
+  document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";//Total price for all items in cart
+  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";//Total price for a specific item the cart table
 }
 
 function priceCompute(elementID, price, method){
 	var val = document.getElementById(elementID).value;
 	if(method === "increaseValue" )
 		TOTALPRICE+=parseFloat(price);
-	else
+	else if((storeIntialQTY(-10)-val)!=0)//prevent negative total price
 		TOTALPRICE-=parseFloat(price);
 	return parseFloat(val)*parseFloat(price).toFixed(2);
 }
