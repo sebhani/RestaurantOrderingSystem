@@ -80,7 +80,7 @@ public class ItemRepository{
 
 		
 		public Item mapRow(ResultSet rs, int row) throws SQLException {
-			return new Item(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getDouble("price"), rs.getBoolean("availability")); 
+			return new Item(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getInt("price"), rs.getBoolean("availability")); 
 			
 		}
 		
