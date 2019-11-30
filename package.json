@@ -1,0 +1,19 @@
+{
+  "name": "restaurantorderingsystem",
+  "version": "1.0.0",
+  "description": "RestaurantOrderingSystem is our Software Architecture and Design I (SOEN 343 - Team Skyway) project for the semester.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trevornag/RestaurantOrderingSystem.git"
+  },
+  "author": "laith",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/trevornag/RestaurantOrderingSystem/issues"
+  },
+  "homepage": "https://github.com/trevornag/RestaurantOrderingSystem#readme"
+}
