@@ -71,10 +71,10 @@ function decreaseValue(elementID, price, totalID) {
 function priceCompute(elementID, price, method){
 	var val = document.getElementById(elementID).value;
 	if(method === "increaseValue" )
-		TOTALPRICE+=parseInt(price);
+		TOTALPRICE+=Math.round(price);
 	else if((storeIntialQTY(-10)-val)!=0)//prevent negative total price
-		TOTALPRICE-=parseInt(price);
-	return parseInt(val)*parseInt(price);
+		TOTALPRICE-=Math.round(price);
+	return parseInt(val)*Math.round(price);
 }
 
 //update the cart table dynamically
