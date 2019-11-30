@@ -51,7 +51,7 @@ function increaseValue(elementID, price, totalID) {
   value++;
   document.getElementById(elementID).value = value;
   var total = priceCompute(elementID, price, "increaseValue");
-  document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
+  document.getElementById("totalPrice").innerHTML = parseFloat(TOTALPRICE).toFixed(2) +"$";
   document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";
 }
 
@@ -64,17 +64,17 @@ function decreaseValue(elementID, price, totalID) {
   document.getElementById(elementID).value = value;
   var total = priceCompute(elementID, price, "decreaseValue");
 
-  document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";//Total price for all items in cart
+  document.getElementById("totalPrice").innerHTML = parseFloat(TOTALPRICE).toFixed(2) +"$";//Total price for all items in cart
   document.getElementById(totalID).innerHTML = total +"$";//Total price for a specific item the cart table
 }
 
 function priceCompute(elementID, price, method){
 	var val = document.getElementById(elementID).value;
 	if(method === "increaseValue" )
-		TOTALPRICE+=Math.round(price);
+		TOTALPRICE+=price;
 	else if((storeIntialQTY(-10)-val)!=0)//prevent negative total price
-		TOTALPRICE-=Math.round(price);
-	return parseInt(val)*Math.round(price);
+		TOTALPRICE-=price;
+	return parseInt(val)*parseFloat(price).toFixed(2);
 }
 
 //update the cart table dynamically
