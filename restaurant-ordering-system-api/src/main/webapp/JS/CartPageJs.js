@@ -65,7 +65,7 @@ function decreaseValue(elementID, price, totalID) {
   var total = priceCompute(elementID, price, "decreaseValue");
 
   document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";//Total price for all items in cart
-  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";//Total price for a specific item the cart table
+  document.getElementById(totalID).innerHTML = total +"$";//Total price for a specific item the cart table
 }
 
 function priceCompute(elementID, price, method){
@@ -74,7 +74,7 @@ function priceCompute(elementID, price, method){
 		TOTALPRICE+=parseInt(price);
 	else if((storeIntialQTY(-10)-val)!=0)//prevent negative total price
 		TOTALPRICE-=parseInt(price);
-	return parseInt(val)*parseInt(price).toFixed(2);
+	return parseInt(val)*parseInt(price);
 }
 
 //update the cart table dynamically
