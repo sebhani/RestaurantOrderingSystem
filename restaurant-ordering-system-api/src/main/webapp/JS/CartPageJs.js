@@ -8,11 +8,11 @@ for(var key in window.localStorage){
 		idsInStorage.push(parseInt(key));
 	}
 }
-	
+
 	 xhr.open('GET', `http://localhost:8080/inventory/`, true);
 	 xhr.send();
 	 xhr.onload = processRequest;
-					 
+
 function processRequest (e){
 	if (xhr.readyState == 4){
 		var response = JSON.parse(xhr.responseText);
@@ -35,7 +35,7 @@ function filterItems(e){
 		document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
 	}
 }
- 
+
 function storeIntialQTY(initialQTY){//helper method used to store the initial number of QTY
 	if(initialQTY != (-10))
 		QTYInitial = initialQTY;
@@ -63,7 +63,7 @@ function decreaseValue(elementID, price, totalID) {
  	 value--;
   document.getElementById(elementID).value = value;
   var total = priceCompute(elementID, price, "decreaseValue");
-  
+
   document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";//Total price for all items in cart
   document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";//Total price for a specific item the cart table
 }
@@ -71,10 +71,10 @@ function decreaseValue(elementID, price, totalID) {
 function priceCompute(elementID, price, method){
 	var val = document.getElementById(elementID).value;
 	if(method === "increaseValue" )
-		TOTALPRICE+=parseFloat(price);
+		TOTALPRICE+=parseInt(price);
 	else if((storeIntialQTY(-10)-val)!=0)//prevent negative total price
-		TOTALPRICE-=parseFloat(price);
-	return parseFloat(val)*parseFloat(price).toFixed(2);
+		TOTALPRICE-=parseInt(price);
+	return parseInt(val)*parseInt(price).toFixed(2);
 }
 
 //update the cart table dynamically
