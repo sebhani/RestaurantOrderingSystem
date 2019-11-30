@@ -9,6 +9,7 @@ For building and running the application you need:
 - [MySQL](https://dev.mysql.com/downloads/installer/)
   
   - *A great [video](https://www.youtube.com/watch?v=u96rVINbAUI) is available which shows you how to install MySQL as well as MySQL Workbench (optional GUI)*
+- [Eclipse](https://www.eclipse.org/downloads/) (or any IDE)
 
 
 ## Running the application locally
