@@ -45,7 +45,7 @@ function increaseValue(elementID, price, totalID) {
   document.getElementById(elementID).value = value;
   var total = priceCompute(elementID, price, "increaseValue");
   document.getElementById("totalPrice").innerHTML = parseFloat(TOTALPRICE).toFixed(2) +"$";
-  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";
+  document.getElementById(totalID).innerHTML = parseFloat(total).toFixed(2)+"$";
 }
 
 function decreaseValue(elementID, price, totalID) {
@@ -58,7 +58,7 @@ function decreaseValue(elementID, price, totalID) {
   var total = priceCompute(elementID, price, "decreaseValue");
   
   document.getElementById("totalPrice").innerHTML = parseFloat(TOTALPRICE).toFixed(2) +"$";//Total price for all items in cart
-  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";//Total price for a specific item the cart table
+  document.getElementById(totalID).innerHTML = parseInt(total)+"$";//Total price for a specific item the cart table
 }
 
 function priceCompute(elementID, price, method){
