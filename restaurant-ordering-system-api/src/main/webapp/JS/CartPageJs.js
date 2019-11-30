@@ -66,8 +66,8 @@ function priceCompute(elementID, price, method){
 	if(method === "increaseValue" )
 		TOTALPRICE+=parseFloat(price);
 	else if((storeIntialQTY(-10)-val)!=0)//prevent negative total price
-		TOTALPRICE-=parseFloat(price);
-	return parseFloat(val)*parseFloat(price).toFixed(2);
+		TOTALPRICE-=parseInt(price);
+	return parseInt(val)*parseInt(price);
 }
 
 //update the cart table dynamically
