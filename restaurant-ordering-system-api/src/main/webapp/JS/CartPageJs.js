@@ -1,3 +1,4 @@
+var ROOT = "http://localhost:8080";
 var idsInStorage = [];
 var itemObjects = [];
 var xhr = new XMLHttpRequest();
@@ -9,25 +10,17 @@ for(var key in window.localStorage){
 	}
 }
 	
-	 xhr.open('GET', `http://localhost:8080/inventory/`, true);
+	 xhr.open('GET', `${ROOT}/cart/`, true);
 	 xhr.send();
 	 xhr.onload = processRequest;
 					 
 function processRequest (e){
 	if (xhr.readyState == 4){
-		var response = JSON.parse(xhr.responseText);
-		filterItems(response);
-		console.log(itemObjects)
+		itemObjects = JSON.parse(xhr.responseText);
+		getTotalPrice(itemObjects);
 }}
 
-function filterItems(e){
-	console.log(e);
-	console.log(idsInStorage);
-	for (var i= 0; i<e.length; i++){
-		if(idsInStorage.includes(e[i].id)){
-			itemObjects.push(e[i])
-		}
-	}
+function getTotalPrice(e){
 	document.getElementById("numCart").innerHTML = itemObjects.length;
 	for (var j=0; j<itemObjects.length; j++){
 		UpdateTable(new Array(itemObjects[j].name,itemObjects[j].price));

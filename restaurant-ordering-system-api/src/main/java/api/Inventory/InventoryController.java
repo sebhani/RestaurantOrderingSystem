@@ -18,18 +18,18 @@ import com.sun.istack.NotNull;
 public class InventoryController {
 	
 	@Autowired
-    ItemRepository itemRespository;
+    ItemRepository itemRepository;
 	@RequestMapping(value = "/")
 	public void redirectHomePage(HttpServletResponse httpResponse) throws Exception {
 	        httpResponse.sendRedirect("/html/homepage.html");  
 	}
 	@RequestMapping(value = "/inventory", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Item> getCompleteInventory() {
-		return itemRespository.findAll();
+		return itemRepository.findAll();
 	}
 	
 	@RequestMapping(value = "/inventory/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Item getItem(@PathVariable @NotNull @DecimalMin("1") int id) {
-		return itemRespository.findOne(id);
+		return itemRepository.findOne(id);
 	}
 }
