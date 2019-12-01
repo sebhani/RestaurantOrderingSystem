@@ -2,7 +2,8 @@ var idsInStorage = [];
 var itemObjects = [];
 var xhr = new XMLHttpRequest();
 var TOTALPRICE = 0;
-module.exports = QTYInitial = 0;
+//module.exports = 
+	QTYInitial = 0;
 for(var key in window.localStorage){
 	if(parseInt(key) != NaN && parseInt(key) > 0 && /^\d+$/.test(key)){
 		idsInStorage.push(parseInt(key));
