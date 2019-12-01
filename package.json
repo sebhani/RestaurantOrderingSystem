@@ -1,5 +1,6 @@
 {
   "name": "restaurantorderingsystem",
+  "type": "module",
   "version": "1.0.0",
   "description": "RestaurantOrderingSystem is our Software Architecture and Design I (SOEN 343 - Team Skyway) project for the semester.",
   "main": "index.js",
@@ -10,10 +11,25 @@
     "type": "git",
     "url": "git+https://github.com/trevornag/RestaurantOrderingSystem.git"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "office-ui-fabric-react/lib/(.*)$": "office-ui-fabric-react/lib-commonjs/$1"
+    }
+  },
   "author": "laith",
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/trevornag/RestaurantOrderingSystem/issues"
   },
-  "homepage": "https://github.com/trevornag/RestaurantOrderingSystem#readme"
+  "homepage": "https://github.com/trevornag/RestaurantOrderingSystem#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "expect.js": "^0.3.1",
+    "milsymbol": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "jest": "^24.9.0"
+  }
 }

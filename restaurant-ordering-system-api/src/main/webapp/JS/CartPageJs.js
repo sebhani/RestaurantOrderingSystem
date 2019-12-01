@@ -2,7 +2,7 @@ var idsInStorage = [];
 var itemObjects = [];
 var xhr = new XMLHttpRequest();
 var TOTALPRICE = 0;
-var QTYInitial = 0;
+module.exports = QTYInitial = 0;
 for(var key in window.localStorage){
 	if(parseInt(key) != NaN && parseInt(key) > 0 && /^\d+$/.test(key)){
 		idsInStorage.push(parseInt(key));
@@ -35,12 +35,13 @@ function filterItems(e){
 		document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
 	}
 }
- 
+
 function storeIntialQTY(initialQTY){//helper method used to store the initial number of QTY
 	if(initialQTY != (-10))
 		QTYInitial = initialQTY;
 	return QTYInitial;
 }
+
 
 
 //handle updating quantity
@@ -99,3 +100,11 @@ function UpdateTable(rowInfo){
 	cell4.innerHTML = `<p class="number" id='total${lastRowIndex+1}'>${rowInfo[1]}$</p>`
 
 }
+module.exports={
+		storeIntialQTY : storeIntialQTY,
+		increaseValue : increaseValue,
+		decreaseValue : decreaseValue,
+		priceCompute : priceCompute
+};
+
+
