@@ -32,9 +32,7 @@ var xhr = new XMLHttpRequest();
 					                baseDiv = document.createElement('div');
 					                baseDiv.setAttribute("class", "card");
 					                document.getElementById("cards").appendChild(baseDiv);
-					                var img = document.createElement('img');
-					                img.setAttribute("src", "");
-					                img.setAttribute("alt", data[i].name +" Image");
+					               
 					                
 					                var header = document.createElement("H1");
 					                var title = document.createTextNode(data[i].name); 
@@ -61,7 +59,6 @@ var xhr = new XMLHttpRequest();
 				   					pTagButton.appendChild(btn);
 					                
 					            
-					               document.getElementById("cards").appendChild(img);
 					               document.getElementById("cards").appendChild(header);
 					               document.getElementById("cards").appendChild(price);
 					               document.getElementById("cards").appendChild(pTag);
