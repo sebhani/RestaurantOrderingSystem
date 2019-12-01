@@ -13,7 +13,7 @@ public class Item {
 	private int id;
 	private String name;
 	private String description;
-	private int price;
+	private double price;
 	private boolean isAvailable;
 	
 	public Item() {
@@ -29,7 +29,7 @@ public class Item {
 		
 	}
 	
-	public Item(int id, String name, String description, int price, boolean isAvailable) {
+	public Item(int id, String name, String description, double price, boolean isAvailable) {
 		this.id = id;
 		_id=id+1;
 		this.name = name;
@@ -62,7 +62,7 @@ public class Item {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 	public void setPrice(int price) {
