@@ -86,7 +86,7 @@ function UpdateTable(rowInfo){
 	cell2.innerHTML = rowInfo[1] +"$";
 	cell3.innerHTML = "<form class='center' >"+
 `<div class='value-button' id='decrease' onclick='decreaseValue("row${lastRowIndex+1}", ${rowInfo[1]}, "total${lastRowIndex+1}")' value='Decrease Value'>-</div>`+
-`<input type='number' class="number" id='row${lastRowIndex+1}' value='1' />`+
+`<input class="number" id='row${lastRowIndex+1}' value='1' />`+
 `<div class='value-button' id='increase' onclick='increaseValue("row${lastRowIndex+1}", ${rowInfo[1]}, "total${lastRowIndex+1}")' value='Increase Value'>+</div>`+
 "</form>"
 	cell4.innerHTML = `<p class="number" id='total${lastRowIndex+1}'>${rowInfo[1]}$</p>`
