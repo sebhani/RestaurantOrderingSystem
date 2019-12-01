@@ -47,21 +47,4 @@ public class ItemTest {
 	        item3.setAvailable(true);
 	        assertTrue(item3.isAvailable()==true);
 	    }
-	  
-	  
-	  
-	  @Test
-	    public void testFindOne() {
-	        //given
-	        //final ItemRepository iR=new ItemRepository(); 
-	        final Item item = new Item("Lasagna","Culinary dish made with stacked layers of pasta alternated with sauces and ingredients",15,true);
-	        final ItemRepository iR = new ItemRepository();
-	        String actual=iR.findOne(1).getName();
-	        String expected=item.getName();
-	        assertEquals(expected, actual);
-	    }
-	  
-
-
-
 }
