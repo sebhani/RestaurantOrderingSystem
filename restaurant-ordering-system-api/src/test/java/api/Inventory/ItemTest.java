@@ -1,14 +1,12 @@
 package api.Inventory;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 
-
-
-
-public class ItemTest {
+public class ItemTest{
 	@Autowired(required= true )
 	private JdbcOperations jdbc;
 	 
