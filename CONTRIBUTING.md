@@ -3,7 +3,7 @@
 The following guidelines should be followed rigorously! Above all, there is one critical rule:
 * **NEVER COMMIT/PUSH CODE DIRECTLY TO THE `master` BRANCH!** 
 
-This is an important guideline to follow because we want to contain revisions of code  logically and not just willy-nilly. This means that for code to end up in the master branch, pull-requests will need to be opened in order for code reviews to be conducted to ensure that incorporation of said branch will be sound not break everything. These branches, called feature branches, are created and worked on usually by 1 member. They are called feature branches because they represent a specific feature (sometimes fix, etc) that was solely meant for it to address. 
+This is an important guideline to follow because we want to contain revisions of code  logically. This means that for code to end up in the master branch, pull-requests will need to be opened in order for code reviews to be conducted to ensure that incorporation of said branch will be sound not break everything. These branches, called feature branches, are created and worked on usually by 1 member. They are called feature branches because they represent a specific feature (sometimes fix, etc) that was solely meant for it to address. 
 
 That being said, the basic process of creating branches, committing code to them, and opening pull-requests are are follow:
 * If you haven't already, clone the repository locally in some folder of your choosing:
