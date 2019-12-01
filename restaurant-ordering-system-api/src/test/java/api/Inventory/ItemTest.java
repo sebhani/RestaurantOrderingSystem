@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 
 public class ItemTest{
-	@Autowired(required= true )
-	private JdbcOperations jdbc;
-	 
+	
 
 	@Test
 	    public void testSetName() {

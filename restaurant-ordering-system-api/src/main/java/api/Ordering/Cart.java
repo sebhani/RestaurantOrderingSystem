@@ -8,7 +8,7 @@ import java.util.Set;
 import api.Inventory.Item;
 
 public class Cart {
-	private Set<Integer> itemIds = new HashSet<Integer>();
+	Set<Integer> itemIds = new HashSet<Integer>();
 	private double totalPrice;
 
 	
