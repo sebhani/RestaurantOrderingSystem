@@ -25,7 +25,6 @@ public class ItemRepository{
 	private static final String SQL_FIND_ONE = "select * from restaurantorderingsystem_db.item where id = ?";
 	private static final String SQL_FIND_ALL = "select * from restaurantorderingsystem_db.item order by name";
 	private static final String SQL_DELETE_ONE = "delete from restaurantorderingsystem_db.item where id = ?";
-
 	
 	
 	public Item findOne(int id) {
