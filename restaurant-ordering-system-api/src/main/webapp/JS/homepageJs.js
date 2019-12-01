@@ -1,10 +1,12 @@
+var ROOT = "http://localhost:8080";
 var xhr = new XMLHttpRequest();
-					 xhr.open('GET', "http://localhost:8080/inventory", true);
+					 xhr.open('GET', ROOT+"/inventory", true);
 					 xhr.send();
 					 xhr.onload = processRequest;
 					 var names = [];
 					 var prices = [];
 					 var descriptions = [];
+					
 					 
 					 function populateArray(e){
 						 for (var i = 0; i<e.length; i++){
@@ -18,17 +20,17 @@ var xhr = new XMLHttpRequest();
 								}
 								}
 					 }
+					 
+					 
 					 function processRequest (e){
 						 	if (xhr.readyState == 4){
 						 		var response = JSON.parse(xhr.responseText);
 								populateArray(response);
-								console.log(prices);
-								console.log(descriptions);
-								console.log(names);
 								data=response;
 								
 								for (var i=0; i<data.length; i++){
 
+									//CREATING HTML ELEMENTS DYNAMICALLY
 					                baseDiv = document.createElement('div');
 					                baseDiv.setAttribute("class", "card");
 					                document.getElementById("cards").appendChild(baseDiv);
@@ -53,11 +55,20 @@ var xhr = new XMLHttpRequest();
 					                var btn = document.createElement("BUTTON");
 					                btn.innerHTML = "Add to Cart";
 					                let id = data[i].id;
-					                btn.onclick= function(){
-										if(localStorage.getItem(id) === null){
-											localStorage.setItem(id,"item with id: "+id);
-										}
-				   					};
+					                let item = data[i];
+					                btn.onclick= function (){
+											//POST
+											var reqCart = new XMLHttpRequest();
+												reqCart.open('POST', ROOT+"/cart", true);
+												reqCart.setRequestHeader("Content-Type", "application/json");
+												reqCart.send(JSON.stringify({
+												    id: item.id,
+												    name: item.name,
+												    description: item.description,
+												    price: item.price,
+												    available: item.available
+												}));	
+					                }
 				   					pTagButton.appendChild(btn);
 					                
 					            
@@ -69,3 +80,5 @@ var xhr = new XMLHttpRequest();
 					              }
 						 	}
 						 }
+
+					 
