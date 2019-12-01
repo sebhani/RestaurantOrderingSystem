@@ -9,11 +9,11 @@ for(var key in window.localStorage){
 		idsInStorage.push(parseInt(key));
 	}
 }
-	
+
 	 xhr.open('GET', `${ROOT}/cart/`, true);
 	 xhr.send();
 	 xhr.onload = processRequest;
-					 
+
 function processRequest (e){
 	if (xhr.readyState == 4){
 		itemObjects = JSON.parse(xhr.responseText);
@@ -28,7 +28,7 @@ function getTotalPrice(e){
 		document.getElementById("totalPrice").innerHTML = TOTALPRICE +"$";
 	}
 }
- 
+
 function storeIntialQTY(initialQTY){//helper method used to store the initial number of QTY
 	if(initialQTY != (-10))
 		QTYInitial = initialQTY;
@@ -56,8 +56,8 @@ function decreaseValue(elementID, price, totalID) {
  	 value--;
   document.getElementById(elementID).value = value;
   var total = priceCompute(elementID, price, "decreaseValue");
-  
-  document.getElementById("totalPrice").innerHTML = parseFloat(TOTALPRICE).toFixed(2) +"$";//Total price for all items in cart
+  document.getElementById(totalID).innerHTML = total.toFixed(2) +"$";//Total price for a specific item the cart table
+  document.getElementById("totalPrice").innerHTML = parseInt(TOTALPRICE) +"$";//Total price for all items in cart
   document.getElementById(totalID).innerHTML = parseInt(total)+"$";//Total price for a specific item the cart table
 }
 
