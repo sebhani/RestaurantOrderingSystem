@@ -10,6 +10,7 @@ For building and running the application you need:
   
   - *A great [video](https://www.youtube.com/watch?v=u96rVINbAUI) is available which shows you how to install MySQL as well as MySQL Workbench (optional GUI)*
 - [Eclipse](https://www.eclipse.org/downloads/) (or any IDE)
+- [Maven](https://stackoverflow.com/questions/8620127/maven-in-eclipse-step-by-step-installation)
 
 
 ## Running the application locally
