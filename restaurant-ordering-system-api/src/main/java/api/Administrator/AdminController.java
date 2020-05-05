@@ -29,7 +29,7 @@ public class AdminController {
     public String addFormPost(@ModelAttribute Item newItem){
         newItem.setAvailable(true);
         itemRepository.save(newItem);
-        
+
         return "redirect:add";
     }
 }
