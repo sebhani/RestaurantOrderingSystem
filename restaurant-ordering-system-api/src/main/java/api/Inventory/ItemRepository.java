@@ -54,7 +54,7 @@ public class ItemRepository{
 		}, holder);
 		
 		if(rows == 1) {	// success, so apply ID to the customer object
-			cust.setId((int)holder.getKey());
+			cust.setId(holder.getKey().intValue());
 			return cust;
 		}
 		
