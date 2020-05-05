@@ -18,6 +18,9 @@ public class AdminController {
         return "administrator/index";
     }
 
+    /*
+     * Handle add page
+     */
     //handle displaying of add form
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddForm(){
@@ -31,5 +34,14 @@ public class AdminController {
         itemRepository.save(newItem);
 
         return "redirect:add";
+    }
+
+    /*
+     * Handle remove page
+     */
+    //handle displaying of remove form
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String displayRemoveItem(){
+        return "administrator/removeItem";
     }
 }
