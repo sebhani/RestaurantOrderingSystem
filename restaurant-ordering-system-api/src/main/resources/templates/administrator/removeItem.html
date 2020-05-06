@@ -8,26 +8,23 @@
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
-    <h1>Add Item to menu</h1>
+    <h1>Remove Item from menu</h1>
     <nav>
         <a href="/administrator">Main</a> |
         <a href="/administrator/add">Add</a> |
         <a href="/administrator/remove">Remove</a>
     </nav>
-    <form method="post" style="max-width:600px">
+
+    <form method="post" style="max-width:600px; margin-top:2%">
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control"/>
+            <label for="itemId">Item ID</label>
+            <input type="number" step="1" name="itemId" id="itemId"/>
         </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" name="description" id="description" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" name="price" step="0.01" id="price" class="form-control"/>
-        </div>
-        <input type="submit" value="Add item"/>
+        <input type="submit" value="Remove Item"/>
     </form>
+
+    <div class="alert alert-warning" style="margin-top:2%">
+        <strong>Warning!</strong> The item will be deleted permanently.
+    </div>
 </body>
 </html>
