@@ -44,4 +44,12 @@ public class AdminController {
     public String displayRemoveItem(){
         return "administrator/removeItem";
     }
+
+    //handle post requests from remove form
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
+    public String removeFormPost(@RequestParam int itemId){
+        itemRepository.delete(itemId);
+
+        return "redirect:remove";
+    }
 }
