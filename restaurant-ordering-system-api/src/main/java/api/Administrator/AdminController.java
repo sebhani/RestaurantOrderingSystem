@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "administrator")  // path will become /administrator/...`
@@ -18,6 +19,9 @@ public class AdminController {
 
     @RequestMapping(value = "")
     public String AdminPage(Model model){
+        List<Item> menuItems = itemRepository.findAll();
+        model.addAttribute("menuItems", menuItems);
+
         return "administrator/index";
     }
 
@@ -26,7 +30,7 @@ public class AdminController {
      */
     //handle displaying of add form
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddForm(){
+    public String displayAddForm(Model model){
         return "administrator/add";
     }
 
