@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+    <h1>Update menu item</h1>
+    <nav>
+        <a href="/administrator">Main</a> |
+        <a href="/administrator/add">Add</a> |
+        <a href="/administrator/remove">Remove</a> |
+        <a href="/administrator/update">Update</a>
+    </nav>
+
+    <ul class="list-group" style="margin-top:2%">
+        <li class="list-group-item list-group-item-light">Instructions</li>
+        <li class="list-group-item list-group-item-info">Only description can be left empty</li>
+        <li class="list-group-item list-group-item-info">If you'd like to use same values as the original menu item:
+            <ul>
+                <li>For title and description <em>type</em> dash (i.e. -)</li>
+                <li>For price <em>type</em> 404 as the price</li>
+            </ul>
+        </li>
+    </ul>
+
+    <form method="post" style="max-width:600px; margin-top:2%">
+        <div class="form-group">
+            <label for="itemId">item id</label>
+            <input type="number" step="1" id="itemId" name="id" class="form-control" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="itemTitle">New title</label>
+            <input type="text" id="itemTitle" name="name" class="form-control" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="itemDescription">New Description</label>
+            <input type="text" id="itemDescription" name="description" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="itemPrice">New Price</label>
+            <input type="number" step="0.01" id="itemPrice" name="price" class="form-control" required/>
+        </div>
+
+        <div class="form-group">
+            <label style="margin-right:2%">New Availability</label>
+            <label for="available">Available</label>
+            <input type="radio" id="available" name="availability" value="true" checked/>
+            <label for="unavailable" style="margin-left:3%">Unavailable</label>
+            <input type="radio" id="unavailable" name="availability" value="false"/>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Update item"/>
+    </form>
+
+    <div class="alert alert-warning" style="margin-top:2%">
+        <strong>Warning!</strong> The item will be updated permanently.
+    </div>
+</body>
+</html>
