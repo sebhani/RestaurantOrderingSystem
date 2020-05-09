@@ -52,4 +52,13 @@ public class AdminController {
 
         return "redirect:remove";
     }
+
+    /*
+     * Handle update page
+     */
+    //handle displaying of update form
+    @RequestMapping(value = "update", method = RequestMethod.GET)
+    public String displayUpdateItem(){
+        return "administrator/updateItem";
+    }
 }

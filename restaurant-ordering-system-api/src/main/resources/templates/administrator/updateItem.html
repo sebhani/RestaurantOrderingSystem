@@ -12,7 +12,8 @@
     <nav>
         <a href="/administrator">Main</a> |
         <a href="/administrator/add">Add</a> |
-        <a href="/administrator/remove">Remove</a>
+        <a href="/administrator/remove">Remove</a> |
+        <a href="/administrator/update">Update</a>
     </nav>
 
     <form method="post" style="max-width:600px; margin-top:2%">
@@ -37,11 +38,11 @@
         </div>
 
         <div class="form-group">
-            <label>New Price</label>
-            <input type="radio" id="available" name="isAvailable" value="true" required/>
+            <label style="margin-right:2%">New Price</label>
             <label for="available">Available</label>
-            <input type="radio" id="unavailable" name="isAvailable" value="false" required/>
+            <input type="radio" id="available" name="isAvailable" value="true" required/>
             <label for="unavailable">Unavailable</label>
+            <input type="radio" id="unavailable" name="isAvailable" value="false" required/>
         </div>
 
         <input type="submit" value="Update item"/>
