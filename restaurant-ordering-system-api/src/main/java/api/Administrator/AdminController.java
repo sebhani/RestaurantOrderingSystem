@@ -3,9 +3,12 @@ package api.Administrator;
 import api.Inventory.Item;
 import api.Inventory.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Field;
 
 @Controller
 @RequestMapping(value = "administrator")  // path will become /administrator/...`
@@ -61,4 +64,28 @@ public class AdminController {
     public String displayUpdateItem(){
         return "administrator/updateItem";
     }
+
+    //handle post requests from update form
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public String updateFormPost(@ModelAttribute Item updatedItem, @RequestParam String availability){
+
+        Item originalItem;
+        //checking if the item exits
+        try {
+            originalItem= itemRepository.findOne(updatedItem.getId());
+        } catch (EmptyResultDataAccessException e){
+            return "redirect:update";
+        }
+
+        //set boolean attribute isAvailable since radio controls values are strings
+        if(availability.equals("true"))
+            updatedItem.setAvailable(true);
+
+
+
+
+        return "redirect:update";
+    }
+
+
 }
