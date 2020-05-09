@@ -74,6 +74,7 @@ public class AdminController {
         try {
             originalItem= itemRepository.findOne(updatedItem.getId());
         } catch (EmptyResultDataAccessException e){
+            System.out.print(e);
             return "redirect:update";
         }
 
@@ -81,11 +82,21 @@ public class AdminController {
         if(availability.equals("true"))
             updatedItem.setAvailable(true);
 
-
-
+        //populate attributes with original values if required
+        checkDefaults(originalItem, updatedItem);
 
         return "redirect:update";
     }
 
+    //helper method to populate attributes with original values if required
+    private void checkDefaults(Item originalItem, Item updatedItem){
+        if((updatedItem.getName().trim()).equals("-"))
+            updatedItem.setName(originalItem.getName());
 
+        if((updatedItem.getDescription().trim()).equals("-"))
+            updatedItem.setDescription(originalItem.getDescription());
+
+        if(((int) updatedItem.getPrice()) == 404)
+            updatedItem.setPrice(originalItem.getPrice());
+    }
 }
