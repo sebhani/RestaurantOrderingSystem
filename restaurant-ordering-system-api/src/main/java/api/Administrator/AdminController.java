@@ -85,6 +85,8 @@ public class AdminController {
         //populate attributes with original values if required
         checkDefaults(originalItem, updatedItem);
 
+        itemRepository.update(updatedItem);
+
         return "redirect:update";
     }
 
