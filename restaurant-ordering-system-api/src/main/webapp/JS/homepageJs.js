@@ -1,4 +1,4 @@
-var ROOT = "http://localhost:8080";
+/*var ROOT = "http://localhost:8080";
 var xhr = new XMLHttpRequest();
 					 xhr.open('GET', ROOT+"/inventory", true);
 					 xhr.send();
@@ -78,4 +78,4 @@ var xhr = new XMLHttpRequest();
 						 	}
 						 }
 
-					 
+					 */

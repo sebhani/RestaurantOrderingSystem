@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 		<head>
 				<title>Restaurant Ordering</title>
 				<meta charset="UTF-8">
@@ -30,7 +30,14 @@
 
 <h2 style="text-align:center">Available Menu Items</h2>
 
-<div id="cards" class="card">
+	<div class="card" th:each="item: ${menuItems}">
+		<h1 th:text="${item.name}"></h1>
+		<p class="price" th:text="${item.price}"></p>
+		<p th:text="${item.description}"></p>
+		<p>
+			<button>Add to Cart</button>
+		</p>
+	</div>
 	<style>.card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
