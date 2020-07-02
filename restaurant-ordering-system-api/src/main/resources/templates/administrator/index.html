@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
+<head th:replace="adminFragments :: head"></head>
 <body class="container">
-    <h1>Administrator Page</h1>
-    <nav>
-        <a href="/administrator">Main</a> |
-        <a href="/administrator/add">Add</a> |
-        <a href="/administrator/remove">Remove</a> |
-        <a href="/administrator/update">Update</a>
-    </nav>
+    <h1 th:text="${title}"></h1>
+
+    <nav th:replace="adminFragments :: navigation"></nav>
 
     <h3 class="text-center" style="margin-top:3%">Menu Items</h3>
     <table class="table table-bordered">
@@ -28,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="item : ${menuItems}">
+            <tr th:each="item: ${menuItems}">
                 <td th:text="${item.id}"></td>
                 <td th:text="${item.name}"></td>
                 <td th:text="${item.description}"></td>

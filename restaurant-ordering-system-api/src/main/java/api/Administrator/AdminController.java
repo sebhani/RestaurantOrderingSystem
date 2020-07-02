@@ -21,6 +21,7 @@ public class AdminController {
     public String AdminPage(Model model){
         List<Item> menuItems = itemRepository.findAll();
         model.addAttribute("menuItems", menuItems);
+        model.addAttribute("title", "Administrator Page");
 
         return "administrator/index";
     }
@@ -31,6 +32,8 @@ public class AdminController {
     //handle displaying of add form
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddForm(Model model){
+        model.addAttribute("title", "Add Item to Menu");
+
         return "administrator/add";
     }
 
@@ -48,7 +51,9 @@ public class AdminController {
      */
     //handle displaying of remove form
     @RequestMapping(value = "remove", method = RequestMethod.GET)
-    public String displayRemoveItem(){
+    public String displayRemoveItem(Model model){
+        model.addAttribute("title", "Remove Item from Menu");
+
         return "administrator/removeItem";
     }
 
@@ -65,7 +70,9 @@ public class AdminController {
      */
     //handle displaying of update form
     @RequestMapping(value = "update", method = RequestMethod.GET)
-    public String displayUpdateItem(){
+    public String displayUpdateItem(Model model){
+        model.addAttribute("title", "Update Menu Item");
+
         return "administrator/updateItem";
     }
 

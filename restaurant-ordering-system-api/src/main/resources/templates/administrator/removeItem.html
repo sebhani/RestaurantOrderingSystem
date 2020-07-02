@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
+<head th:replace="adminFragments :: head"></head>
 <body class="container">
-    <h1>Remove Item from menu</h1>
-    <nav>
-        <a href="/administrator">Main</a> |
-        <a href="/administrator/add">Add</a> |
-        <a href="/administrator/remove">Remove</a> |
-        <a href="/administrator/update">Update</a>
-    </nav>
+    <h1 th:text="${title}"></h1>
+
+    <nav th:replace="adminFragments :: navigation"></nav>
 
     <form method="post" style="max-width:600px; margin-top:2%">
         <div class="form-group">
             <label for="itemId">Item ID</label>
-            <input type="number" step="1" name="itemId" id="itemId"/>
+            <input type="number" step="1" name="itemId" id="itemId" class="form-control"/>
         </div>
-        <input type="submit" value="Remove Item"/>
+
+        <input type="submit" value="Remove Item" class="btn btn-primary"/>
     </form>
 
     <div class="alert alert-warning" style="margin-top:2%">

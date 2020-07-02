@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
+<head th:replace="adminFragments :: head"></head>
 <body class="container">
-    <h1>Update menu item</h1>
-    <nav>
-        <a href="/administrator">Main</a> |
-        <a href="/administrator/add">Add</a> |
-        <a href="/administrator/remove">Remove</a> |
-        <a href="/administrator/update">Update</a>
-    </nav>
+    <h1 th:text="${title}"></h1>
+
+    <nav th:replace="adminFragments :: navigation"></nav>
 
     <ul class="list-group" style="margin-top:2%">
         <li class="list-group-item list-group-item-light">Instructions</li>
@@ -29,7 +19,7 @@
 
     <form method="post" style="max-width:600px; margin-top:2%">
         <div class="form-group">
-            <label for="itemId">item id</label>
+            <label for="itemId">Item id</label>
             <input type="number" step="1" id="itemId" name="id" class="form-control" required/>
         </div>
 
