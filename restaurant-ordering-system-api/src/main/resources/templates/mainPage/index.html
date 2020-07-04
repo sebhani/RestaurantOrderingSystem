@@ -34,9 +34,11 @@
 		<h1 th:text="${item.name}"></h1>
 		<p class="price" th:text="${item.price}"></p>
 		<p th:text="${item.description}"></p>
-		<p>
-			<button>Add to Cart</button>
-		</p>
+		<form method="post" action="#" th:action="@{/checkout}">
+			<p>
+				<button type="submit" name="itemId" th:value="${item.id}">Order</button>
+			</p>
+		</form>
 	</div>
 	<style>.card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
