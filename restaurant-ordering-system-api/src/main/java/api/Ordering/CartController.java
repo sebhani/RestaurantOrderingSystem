@@ -16,20 +16,22 @@ import api.Inventory.ItemRepository;
 @Controller
 public class CartController {
 	@Autowired
-    ItemRepository itemRepository;
+    private ItemRepository itemRepository;
 	
-	Cart cart = new Cart();
+	Cart userCart = new Cart();
 	@RequestMapping(value = "checkout", method=RequestMethod.GET)
 	public String getCartContents(Model model) {
-		model.addAttribute(new Cart());
+		model.addAttribute("itemsAddedToCart",userCart.getItemsAddedToCart());
+		model.addAttribute("totalPrice",userCart.getTotalPrice());
 		//System.out.println("--------------> name: "+item.getName());
 		return "checkout/index";
 	}
 
 	@RequestMapping(value = "checkout", method = RequestMethod.POST)
 	public String addItemToCart(@RequestParam String itemId) {
-		System.out.println("--------------> name: " + itemId);
-		return "checkout/index";
+		Item newItem = itemRepository.findOne(Integer.parseInt(itemId));
+		userCart.addItemToCart(newItem);
+		return "redirect:/checkout";
 	}
 
 	/*

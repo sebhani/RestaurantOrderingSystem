@@ -20,7 +20,7 @@ import com.sun.istack.NotNull;
 public class InventoryController {
 	
 	@Autowired
-    ItemRepository itemRepository;
+    private ItemRepository itemRepository;
 
 	@RequestMapping(value="")
 	public String mainPage(Model model){

@@ -6,8 +6,43 @@ import java.util.List;
 import java.util.Set;
 
 import api.Inventory.Item;
+import api.Inventory.ItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Cart {
+
+	private ArrayList<Item> itemsAddedToCart;
+	private double totalPrice;
+
+	//Constructors
+	public Cart(){
+		itemsAddedToCart = new ArrayList<Item>();
+		totalPrice = 0;
+	}
+
+	public void addItemToCart(Item newItem){
+		itemsAddedToCart.add(newItem);
+		totalPrice+=newItem.getPrice();
+	}
+
+	//Setters and Getters
+	public ArrayList<Item> getItemsAddedToCart() {
+		return itemsAddedToCart;
+	}
+
+	public void setItemsAddedToCart(ArrayList<Item> itemsAddedToCart) {
+		this.itemsAddedToCart = itemsAddedToCart;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	/*
 	private Set<Integer> itemIds = new HashSet<Integer>();
 	private double totalPrice;
 
@@ -34,5 +69,5 @@ public class Cart {
 			}
 		}
 		return items;
-	}
+	}*/
 }
