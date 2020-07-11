@@ -14,9 +14,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String phonenumber;
+    private String password;
+    private String phone; //Refers to the user's phone number
     private boolean activated;
     private String roles;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -34,12 +43,12 @@ public class User {
         this.name = name;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhone(String phone_number) {
+        this.phone = phone_number;
     }
 
     public boolean isActivated() {
