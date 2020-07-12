@@ -34,7 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //You specify accessibility from the most to the least restrictive
                 .antMatchers("/administrator").hasRole("ADMIN")
                 .antMatchers("/checkout").hasAnyRole("USER","ADMIN")
-                .antMatchers("/").permitAll()
-                .and().formLogin();
+                .antMatchers("/", "/signup").permitAll()
+                .and().formLogin()
+                .and().csrf().disable();
     }
 }
