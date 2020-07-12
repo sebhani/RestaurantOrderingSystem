@@ -1,4 +1,4 @@
-var ROOT = "http://localhost:8080";
+/*var ROOT = "http://localhost:8080";
 var idsInStorage = [];
 var itemObjects = [];
 var xhr = new XMLHttpRequest();
@@ -92,3 +92,4 @@ function UpdateTable(rowInfo){
 	cell4.innerHTML = `<p class="number" id='total${lastRowIndex+1}'>${rowInfo[1]}$</p>`
 
 }
+*/
