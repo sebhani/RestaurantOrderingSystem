@@ -6,10 +6,13 @@ import org.h2.command.Command;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.thymeleaf.model.IModel;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserRegistrationController {
@@ -23,7 +26,11 @@ public class UserRegistrationController {
     }
 
     @RequestMapping(value = "signup", method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute User user, Model model){
+    public String registerUser(@ModelAttribute @Valid User user, Errors errors){
+
+        if(errors.hasErrors()){
+            return "redirect:/signup";
+        }
 
         if(exists(user.getPhone())){
             return "redirect:/signup?err=This+Phone+Number+Has+Been+Used!";

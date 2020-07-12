@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /*
 This class represents the web application users which is mapped to the user table in the DB
@@ -13,8 +15,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank
     private String name;
+
+    @NotBlank
     private String password;
+
+    @NotBlank
+    @Size(min = 10, max = 10, message = "Phone number should be 10 characters length")
     private String phone; //Refers to the user's phone number
     private boolean activated;
     private String roles;

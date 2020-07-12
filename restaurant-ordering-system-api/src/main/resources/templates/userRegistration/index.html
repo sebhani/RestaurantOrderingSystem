@@ -23,16 +23,15 @@
     </script>
 </head>
 <body>
-    <form method="post" th:Object="${user}">
+    <form method="post" th:action="@{/signup}" th:Object="${user}">
         <label>
             <p class="label-txt">ENTER YOUR PHONE NUMBER</p>
             <input type="text" class="input" th:field="*{phone}" minlength="10" maxlength="10" required/>
             <div class="line-box">
                 <div class="line"></div>
             </div>
+            <span class="error" th:text="${param.err}"></span>
         </label>
-
-        <span class="text-danger" th:text="${param.err}"></span>
 
         <label>
             <p class="label-txt">ENTER YOUR NAME</p>
