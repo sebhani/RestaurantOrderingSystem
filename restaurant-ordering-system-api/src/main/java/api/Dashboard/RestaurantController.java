@@ -1,4 +1,4 @@
-package api.Administrator;
+package api.Dashboard;
 
 import api.Inventory.Item;
 import api.Inventory.ItemRepository;
@@ -8,12 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "administrator")  // path will become /administrator/...`
-public class AdminController {
+@RequestMapping(value = "dashboard/restaurant")  // path will become dashboard/administrator/...`
+public class RestaurantController {
     @Autowired
     ItemRepository itemRepository;
 
@@ -23,7 +22,7 @@ public class AdminController {
         model.addAttribute("menuItems", menuItems);
         model.addAttribute("title", "Administrator Page");
 
-        return "administrator/index";
+        return "dashboard/restaurant/index";
     }
 
     /*
@@ -34,7 +33,7 @@ public class AdminController {
     public String displayAddForm(Model model){
         model.addAttribute("title", "Add Item to Menu");
 
-        return "administrator/add";
+        return "dashboard/restaurant/add";
     }
 
     //handle post requests from add form
@@ -54,7 +53,7 @@ public class AdminController {
     public String displayRemoveItem(Model model){
         model.addAttribute("title", "Remove Item from Menu");
 
-        return "administrator/removeItem";
+        return "dashboard/restaurant/removeItem";
     }
 
     //handle post requests from remove form
@@ -73,7 +72,7 @@ public class AdminController {
     public String displayUpdateItem(Model model){
         model.addAttribute("title", "Update Menu Item");
 
-        return "administrator/updateItem";
+        return "dashboard/restaurant/updateItem";
     }
 
     //handle post requests from update form

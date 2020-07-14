@@ -32,8 +32,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 //You specify accessibility from the most to the least restrictive
-                .antMatchers("/administrator").hasRole("ADMIN")
-                .antMatchers("/checkout").hasAnyRole("USER","ADMIN")
+                .antMatchers("/dashboard/administrator/**").hasRole("ADMIN")
+                .antMatchers("/dashboard/restaurant/**").hasAnyRole("ADMIN", "OWNER")
+                .antMatchers("/dashboard").hasAnyRole("ADMIN", "OWNER")
+                .antMatchers("/checkout").hasAnyRole("USER","ADMIN","OWNER")
                 .antMatchers("/", "/signup").permitAll()
                 .and().formLogin()
                 .and().csrf().disable();

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center"> Dashboard </h1>
+    <div style="text-align: center; margin-top:80px" >
+        <a th:href="@{/dashboard/administrator}" class="btn btn-primary" role="button">Admin</a>
+        <a th:href="@{/dashboard/restaurant}" class="btn btn-primary" role="button" style="margin-left:200px">Restaurant</a>
+    </div>
+
+</body>
+</html>
