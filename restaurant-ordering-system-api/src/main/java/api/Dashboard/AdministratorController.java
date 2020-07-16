@@ -12,9 +12,4 @@ public class AdministratorController {
     public String getAdminMainPage(){
         return "dashboard/administrator/index";
     }
-
-    @RequestMapping(value = "signup", method = RequestMethod.GET)
-    public String getRestaurantOwnerDashboard(){
-        return "dashboard/administrator/restaurantRegistration";
-    }
 }

@@ -1,9 +1,8 @@
 package api.SpringSecurity.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import api.Registration.model.Restaurantinfo;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -14,6 +13,7 @@ This class represents the web application users which is mapped to the user tabl
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @NotBlank
@@ -27,6 +27,18 @@ public class User {
     private String phone; //Refers to the user's phone number
     private boolean activated;
     private String roles;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
+    private Restaurantinfo restaurantinfo;
+
+    public Restaurantinfo getRestaurantInfo() {
+        return restaurantinfo;
+    }
+
+    public void setRestaurantInfo(Restaurantinfo restaurantInfo) {
+        this.restaurantinfo = restaurantInfo;
+    }
 
     public String getPassword() {
         return password;

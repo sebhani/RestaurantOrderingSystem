@@ -28,11 +28,7 @@ public class InventoryController {
 		model.addAttribute("menuItems", menuItems);
 		return "mainPage/index";
 	}
-	/*
-	@RequestMapping(value = "/")
-	public void redirectHomePage(HttpServletResponse httpResponse) throws Exception {
-	        httpResponse.sendRedirect("resources/templates/mainPage/index.html");
-	}*/
+
 	@RequestMapping(value = "/inventory", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Item> getCompleteInventory() {
 		return itemRepository.findAll();
