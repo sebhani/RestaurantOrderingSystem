@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Restaurant Signup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<h1>Restaurant Signup</h1>
+<form method="post" th:action="@{/signup}" th:Object="${user}" style="max-width:600px; margin-top:2%">
+    <div class="form-group">
+        <label>
+            ENTER YOUR PHONE NUMBER
+            <input type="text" class="input" th:field="*{phone}" minlength="10" maxlength="10" class="form-control" required/>
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+            <span class="error" th:text="${param.err}"></span>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            ENTER YOUR RESTAURANT NAME
+            <input type="text" class="input" th:field="*{name}" class="form-control" required/>
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            ENTER YOUR PASSWORD
+            <input type="password" class="input" th:field="*{password}" class="form-control" required/>
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Create an account</button>
+</form>
+</body>
+</html>
