@@ -18,6 +18,12 @@ public class Restaurantinfo {
     @OneToOne(mappedBy = "restaurantinfo")
     private User user;
 
+    public Restaurantinfo(String address, String latitude, String longitude) {
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public int getId() {
         return id;
     }
