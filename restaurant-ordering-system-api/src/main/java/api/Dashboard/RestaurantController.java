@@ -2,19 +2,34 @@ package api.Dashboard;
 
 import api.Inventory.Item;
 import api.Inventory.ItemRepository;
+import api.SpringSecurity.UserRepository;
+import api.SpringSecurity.models.MyUserDetails;
+import api.SpringSecurity.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "dashboard/restaurant")  // path will become dashboard/administrator/...`
 public class RestaurantController {
     @Autowired
-    ItemRepository itemRepository;
+    private ItemRepository itemRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    private String userRole;
 
     @RequestMapping(value = "")
     public String AdminPage(Model model){
@@ -31,6 +46,13 @@ public class RestaurantController {
     //handle displaying of add form
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddForm(Model model){
+
+        //check if the user is admin to enable restaurant id association
+        userRole = getPrincipal().getAuthorities().iterator().next().getAuthority();
+        if(userRole.equals("ROLE_ADMIN")){
+            model.addAttribute("admin",true);
+        }
+
         model.addAttribute("title", "Add Item to Menu");
 
         return "dashboard/restaurant/add";
@@ -38,8 +60,21 @@ public class RestaurantController {
 
     //handle post requests from add form
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String addFormPost(@ModelAttribute Item newItem){
+    public String addFormPost(@ModelAttribute Item newItem, @RequestParam int restaurantId){
+
+        User user;
+        if(userRole.equals("ROLE_ADMIN")){
+            user = userRepository.findById(restaurantId).get();//You got to handle exception NoSuchElementException
+
+            if(!user.getRoles().equals("ROLE_OWNER"))//check if the user is a restaurant or not
+                return "redirect:add?err=The+User+is+not+a+restaurant!";
+        }else {
+            user = getPricipalDB();//getting the authenticated user (restaurant) from the DB
+        }
+
+        newItem.setRestaurantinfo(user.getRestaurantInfo());
         newItem.setAvailable(true);
+
         itemRepository.save(newItem);
 
         return "redirect:add";
@@ -59,7 +94,7 @@ public class RestaurantController {
     //handle post requests from remove form
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public String removeFormPost(@RequestParam int itemId){
-        itemRepository.delete(itemId);
+        itemRepository.deleteById(itemId);
 
         return "redirect:remove";
     }
@@ -82,7 +117,7 @@ public class RestaurantController {
         Item originalItem;
         //checking if the item exits
         try {
-            originalItem= itemRepository.findOne(updatedItem.getId());
+            originalItem= itemRepository.findById(updatedItem.getId());
         } catch (EmptyResultDataAccessException e){
             System.out.print(e);
             return "redirect:update";
@@ -95,7 +130,7 @@ public class RestaurantController {
         //populate attributes with original values if required
         checkDefaults(originalItem, updatedItem);
 
-        itemRepository.update(updatedItem);
+        itemRepository.save(updatedItem);
 
         return "redirect:update";
     }
@@ -110,5 +145,19 @@ public class RestaurantController {
 
         if(((int) updatedItem.getPrice()) == 404)
             updatedItem.setPrice(originalItem.getPrice());
+    }
+
+    //helper method to return the user fetched from the DB
+    private User getPricipalDB(){
+        MyUserDetails principal = getPrincipal();
+        Optional<User> user = userRepository.findByPhone(principal.getUsername());
+        user.orElseThrow(() -> new UsernameNotFoundException("Not found "+ principal.getUsername()));
+
+        return user.get();
+    }
+
+    //helper method to return the currently authenticated principal
+    private MyUserDetails getPrincipal(){
+        return (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }
