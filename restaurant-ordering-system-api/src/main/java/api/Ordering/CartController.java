@@ -16,8 +16,8 @@ import api.Inventory.ItemRepository;
 @Controller
 public class CartController {
 	@Autowired
-    private ItemRepository itemRepository;
-	
+	private ItemRepository itemRepository;
+
 	Cart userCart = new Cart();
 	@RequestMapping(value = "checkout", method=RequestMethod.GET)
 	public String getCartContents(Model model) {
@@ -29,7 +29,7 @@ public class CartController {
 
 	@RequestMapping(value = "checkout", method = RequestMethod.POST)
 	public String addItemToCart(@RequestParam String itemId) {
-		Item newItem = itemRepository.findOne(Integer.parseInt(itemId));
+		Item newItem = itemRepository.findById(Integer.parseInt(itemId));
 		userCart.addItemToCart(newItem);
 		return "redirect:/checkout";
 	}
