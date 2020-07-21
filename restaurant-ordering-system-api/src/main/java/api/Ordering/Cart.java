@@ -1,13 +1,7 @@
 package api.Ordering;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import api.Inventory.Item;
-import api.Inventory.ItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class Cart {
 
