@@ -1,8 +1,9 @@
 package api.Registration.model;
 
+import api.Inventory.Item;
 import api.SpringSecurity.models.User;
-
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Restaurantinfo {
@@ -18,10 +19,34 @@ public class Restaurantinfo {
     @OneToOne(mappedBy = "restaurantinfo")
     private User user;
 
+    @OneToMany(mappedBy="restaurantinfo")
+    private Set<Item> items;
+
+    //needed for retrieving users
+    public Restaurantinfo(){
+
+    }
+
     public Restaurantinfo(String address, String latitude, String longitude) {
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
     }
 
     public int getId() {
@@ -63,6 +88,4 @@ public class Restaurantinfo {
     public void setUser(User user) {
         this.user = user;
     }*/
-
-
 }
