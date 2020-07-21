@@ -60,7 +60,7 @@ public class RestaurantController {
 
     //handle post requests from add form
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String addFormPost(@ModelAttribute Item newItem, @RequestParam int restaurantId){
+    public String addFormPost(@ModelAttribute Item newItem, @RequestParam(required = false) Integer restaurantId){
 
         User user;
         if(userRole.equals("ROLE_ADMIN")){
@@ -107,12 +107,19 @@ public class RestaurantController {
     public String displayUpdateItem(Model model){
         model.addAttribute("title", "Update Menu Item");
 
+        //check if the user is admin to enable restaurant id association
+        userRole = getPrincipal().getAuthorities().iterator().next().getAuthority();
+        if(userRole.equals("ROLE_ADMIN")){
+            model.addAttribute("admin",true);
+        }
+
         return "dashboard/restaurant/updateItem";
     }
 
     //handle post requests from update form
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String updateFormPost(@ModelAttribute Item updatedItem, @RequestParam String availability){
+    public String updateFormPost(@ModelAttribute Item updatedItem, @RequestParam String availability,
+                                 @RequestParam(required = false) Integer restaurantId){
 
         Item originalItem;
         //checking if the item exits
@@ -129,6 +136,18 @@ public class RestaurantController {
 
         //populate attributes with original values if required
         checkDefaults(originalItem, updatedItem);
+
+        //associate item to restaurant
+        User user;
+        if(userRole.equals("ROLE_ADMIN")){
+            user = restaurantId!=null? userRepository.findById(restaurantId).get() : originalItem.getRestaurantinfo().getUser();//You got to handle exception NoSuchElementException
+
+            if(!user.getRoles().equals("ROLE_OWNER"))//check if the user is a restaurant or not
+                return "redirect:update?err=The+User+is+not+a+restaurant!";
+        }else {
+            user = getPricipalDB();//getting the authenticated user (restaurant) from the DB
+        }
+        updatedItem.setRestaurantinfo(user.getRestaurantInfo());
 
         itemRepository.save(updatedItem);
 
