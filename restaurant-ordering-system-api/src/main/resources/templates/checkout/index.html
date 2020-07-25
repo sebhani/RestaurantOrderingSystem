@@ -8,8 +8,25 @@
 	</style>
     <link rel="stylesheet" type="text/css" href="../CSS/homepage.css">
     <link rel="stylesheet" type="text/css" href="../CSS/cartPage.css">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+            function qtyUpdated(){
+                var discount = /*[[${couponDiscount}]]*/ 0;
+                var qty = document.getElementById("qty").value;
+                var itemPrice = document.getElementById("itemPrice").innerText;
+
+                //when QTY field is empty, the value is set to 1
+                if(!qty){
+                    qty = 1;
+                }
+
+                document.getElementById("itemTotal").innerText = qty * itemPrice; //set Item total price = total price * its quantity
+                document.getElementById("totalPrice").innerText = qty * itemPrice * (1- discount/100); //set Item total price = total price * its quantity * discount
+            }
+        /*]]>*/
+    </script>
 </head>
-<body>
+<body onload="qtyUpdated()">
 <div id="header">
     <h1>Restaurant Name</h1>
 </div>
@@ -36,9 +53,16 @@
     <tbody>
         <tr th:each="item: ${itemsAddedToCart}">
             <td th:text="${item.name}"></td>
-            <td th:text="${item.price}"></td>
-            <td></td>
-            <td></td>
+            <td th:text="${item.price}" id="itemPrice"></td>
+            <td style="text-align: center; /* center checkbox horizontally */
+                       vertical-align: middle; /* center checkbox vertically */">
+
+                <form>
+                    <input type="number" id="qty" name="qty" value="1" style="width:50%" min="1" max="10" oninput="qtyUpdated()"/>
+                </form>
+
+            </td>
+            <td id="itemTotal"></td>
         </tr>
     </tbody>
 </table>
@@ -47,6 +71,12 @@
     <h1> Number of dishes in cart: <div id="numCart"></div></h1>
     <h1 style="margin-top: 20px;">Total: <div id="totalPrice"></div></h1>
     <button class="button button4" style="margin-top: 15px; display:block">Checkout</button>
+</div>
+
+<div style="margin-top:300px; margin-left:30px">
+    <p></p>
+    <p th:if="${couponDiscount!=0}" th:text="${'You got a coupon for ' + couponDiscount + '%'}"></p>
+    <a th:href="@{/applycoupon}">Apply a coupon</a>
 </div>
 
 </body>
