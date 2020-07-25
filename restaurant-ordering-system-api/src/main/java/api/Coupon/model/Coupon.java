@@ -13,7 +13,7 @@ public class Coupon {
     private int id;
 
     @NotBlank(message = "The coupon string can't be blank")
-    private String coupon;
+    private String couponstr;
 
     @Basic
     @Temporal(TemporalType.DATE)
@@ -26,7 +26,7 @@ public class Coupon {
     }
 
     public Coupon(@NotBlank(message = "The coupon string can't be blank") String coupon, Date expiry, @Range(min = 0, max = 100) int percentage) {
-        this.coupon = coupon;
+        this.couponstr = coupon;
         this.expiry = expiry;
         this.percentage = percentage;
     }
@@ -39,12 +39,12 @@ public class Coupon {
         this.id = id;
     }
 
-    public String getCoupon() {
-        return coupon;
+    public String getCouponstr() {
+        return couponstr;
     }
 
-    public void setCoupon(String coupon) {
-        this.coupon = coupon;
+    public void setCouponstr(String coupon) {
+        this.couponstr = coupon;
     }
 
     public Date getExpiry() {
