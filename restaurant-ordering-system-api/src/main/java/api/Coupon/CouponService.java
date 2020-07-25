@@ -3,14 +3,11 @@ package api.Coupon;
 import api.Coupon.model.Coupon;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.joda.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Optional;
-import java.util.TimeZone;
 
 @Service
 public class CouponService {
@@ -21,7 +18,7 @@ public class CouponService {
 
             //Hours,minutes, etc. don't matter to us, so we set the date at the start of the day
             DateTime today = new DateTime(DateTimeZone.UTC).withTimeAtStartOfDay();
-            DateTime expiry = new DateTime(coupon.get().getExpiry()).withTimeAtStartOfDay();
+            DateTime expiry = new DateTime(coupon.get().getExpiry(), DateTimeZone.UTC).withTimeAtStartOfDay();
 
             //Should be replaced with logging
             System.out.println("expiry: "+expiry);
