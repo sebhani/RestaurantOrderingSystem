@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+    <h1>Apply a coupon</h1>
+    <form method="post" style="max-width:600px; margin-top:2%">
+        <div class="form-group">
+            <label for="couponStr">Enter Your Coupon</label>
+            <input type="text" id="couponStr" name="couponToApprove" class="form-control"/>
+            <p class="error text-danger" th:text="${param.err}"></p>
+            <input type="submit" value="Apply" class="btn btn-primary" style="margin-top:5px"/>
+        </div>
+    </form>
+</body>
+</html>
