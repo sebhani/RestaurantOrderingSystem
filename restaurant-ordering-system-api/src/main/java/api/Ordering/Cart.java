@@ -7,6 +7,9 @@ public class Cart {
 
 	private ArrayList<Item> itemsAddedToCart;
 	private double totalPrice;
+	private int quantity;
+	private static int couponDiscount;
+
 
 	//Constructors
 	public Cart(){
@@ -15,6 +18,10 @@ public class Cart {
 	}
 
 	public void addItemToCart(Item newItem){
+		if(!itemsAddedToCart.isEmpty()){//this will allow a single item to be stored in the arraylist
+			itemsAddedToCart.remove(0);
+		}
+
 		itemsAddedToCart.add(newItem);
 		totalPrice+=newItem.getPrice();
 	}
@@ -36,7 +43,23 @@ public class Cart {
 		this.totalPrice = totalPrice;
 	}
 
-	/*
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public static int getCouponDiscount() {
+		return couponDiscount;
+	}
+
+	public static void setCouponDiscount(int couponDiscount) {
+		Cart.couponDiscount = couponDiscount;
+	}
+
+/*
 	private Set<Integer> itemIds = new HashSet<Integer>();
 	private double totalPrice;
 

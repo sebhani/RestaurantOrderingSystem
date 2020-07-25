@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public class CouponService {
-    public boolean approveCoupon(String couponToApprove, CouponRepository couponRepository){
+    public Coupon approveCoupon(String couponToApprove, CouponRepository couponRepository){
         Optional<Coupon> coupon = couponRepository.findByCouponstr(couponToApprove);
 
         if(coupon.isPresent()){
@@ -24,10 +24,10 @@ public class CouponService {
             System.out.println("expiry: "+expiry);
             System.out.println("today: "+today);
 
-            return today.isEqual(expiry) || expiry.isAfter(today); //return true if expiry date is equal/after today's date
+            return today.isEqual(expiry) || expiry.isAfter(today) ? coupon.get():null; //return true if expiry date is equal/after today's date
         }
 
-        return false;
+        return null;
     }
 
     /*

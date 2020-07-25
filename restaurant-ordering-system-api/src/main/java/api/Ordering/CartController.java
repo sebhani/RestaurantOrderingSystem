@@ -22,7 +22,8 @@ public class CartController {
 	@RequestMapping(value = "checkout", method=RequestMethod.GET)
 	public String getCartContents(Model model) {
 		model.addAttribute("itemsAddedToCart",userCart.getItemsAddedToCart());
-		model.addAttribute("totalPrice",userCart.getTotalPrice());
+		model.addAttribute("couponDiscount",Cart.getCouponDiscount());
+		//model.addAttribute("totalPrice",userCart.getTotalPrice());
 		//System.out.println("--------------> name: "+item.getName());
 		return "checkout/index";
 	}

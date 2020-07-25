@@ -1,6 +1,7 @@
 package api.Coupon;
 
 import api.Coupon.model.Coupon;
+import api.Ordering.Cart;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,11 +40,14 @@ public class CouponController {
     @RequestMapping(value = "applycoupon", method = RequestMethod.POST)
     public String applyCoupon(@RequestParam String couponToApprove){
         //checks if the coupon is invalid
-        if(!couponService.approveCoupon(couponToApprove, couponRepository)) {
+        Coupon coupon = couponService.approveCoupon(couponToApprove, couponRepository);
+        if(coupon==null) {
             return "redirect:/applycoupon?err=Invalid+Coupon";
         }
 
-        return "redirect:";
+        Cart.setCouponDiscount(coupon.getPercentage());//set the coupon percentage in the cart
+
+        return "redirect:/checkout";
     }
 
     /*
