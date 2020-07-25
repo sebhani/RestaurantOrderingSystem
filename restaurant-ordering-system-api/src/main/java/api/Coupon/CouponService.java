@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class CouponService {
     public boolean approveCoupon(String couponToApprove, CouponRepository couponRepository){
-        Optional<Coupon> coupon = couponRepository.findByCoupon(couponToApprove);
+        Optional<Coupon> coupon = couponRepository.findByCouponstr(couponToApprove);
 
         if(coupon.isPresent()){
 
