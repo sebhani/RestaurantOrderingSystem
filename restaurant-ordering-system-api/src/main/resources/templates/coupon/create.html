@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create a coupon</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+    <h1>Create a new coupon</h1>
+    <form method="post" style="max-width:600px; margin-top:2%">
+        <div class="form-group">
+            <label for="couponstr">Coupon name</label>
+            <input type="text" name="couponstr" id="couponstr" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="percentage">Percentage</label>
+            <input type="number" name="percentage" step="1" id="percentage" class="form-control" min="0" max="100" required/>
+        </div>
+        <div class="form-group">
+            <label for="expiry">Expiry Date</label>
+            <input type="date" name="expiryDate" id="expiry" class="form-control" required/>
+        </div>
+        <p class="error text-danger" th:text="${param.err}"></p>
+        <input type="submit" value="Create" class="btn btn-primary"/>
+    </form>
+</body>
+</html>
